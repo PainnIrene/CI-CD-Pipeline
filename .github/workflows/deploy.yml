@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Notify Discord - Started
-            run: |
-              curl -H "Content-Type: application/json" \
-              -X POST \
-              -d "{\"embeds\":[{\"title\":\"🚀 Build Started\",\"color\":16776960,\"fields\":[{\"name\":\"Repo\",\"value\":\"${{ github.repository }}\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Author\",\"value\":\"${{ github.actor }}\",\"inline\":true}]}]}" \
-              ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"embeds\":[{\"title\":\"🚀 Build Started\",\"color\":16776960,\"fields\":[{\"name\":\"Repo\",\"value\":\"${{ github.repository }}\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Author\",\"value\":\"${{ github.actor }}\",\"inline\":true}]}]}" \
+          ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Check Python syntax
         run: |
@@ -57,7 +57,6 @@ jobs:
           -X POST \
           -d "{\"embeds\":[{\"title\":\"✅ Deploy Success\",\"color\":3066993,\"fields\":[{\"name\":\"Repo\",\"value\":\"${{ github.repository }}\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Author\",\"value\":\"${{ github.actor }}\",\"inline\":true}]}]}" \
           ${{ secrets.DISCORD_WEBHOOK }}
-
 
       - name: Notify Discord - Failure
         if: failure()
