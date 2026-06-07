@@ -23,11 +23,16 @@ jobs:
               "fields": [
                 {"name": "Repo", "value": "${{ github.repository }}", "inline": true},
                 {"name": "Branch", "value": "${{ github.ref_name }}", "inline": true},
-                {"name": "Author", "value": "${{ github.actor }}", "inline": true},
-                {"name": "Commit", "value": "${{ github.sha }}", "inline": false}
+                {"name": "Author", "value": "${{ github.actor }}", "inline": true}
               ]
             }]
           }' ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Check Python syntax
+        run: |
+          pip install fastapi uvicorn
+          python -m py_compile app/main.py
+          echo "Syntax OK"
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -82,8 +87,4 @@ jobs:
               "color": 15158332,
               "fields": [
                 {"name": "Repo", "value": "${{ github.repository }}", "inline": true},
-                {"name": "Branch", "value": "${{ github.ref_name }}", "inline": true},
-                {"name": "Author", "value": "${{ github.actor }}", "inline": true}
-              ]
-            }]
-          }' ${{ secrets.DISCORD_WEBHOOK }}
+                {"name": "Branch", "value": "${{ github.ref_name }}", "inline
