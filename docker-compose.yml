@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    image: irenepain/ci-cd-pipeline:latest
+    image: painirene/ci-cd-pipeline:latest
     container_name: ci_cd_api
     ports:
       - "8000:8000"
